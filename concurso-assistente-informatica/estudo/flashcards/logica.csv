@@ -1,0 +1,11 @@
+Pergunta;Resposta
+Negação de "Todo A é B"?;Algum A não é B
+Negação de "Algum A é B"?;Nenhum A é B
+Negação de "Nenhum A é B"?;Algum A é B
+Quando "se P então Q" é falsa?;Só se P verdadeiro e Q falso
+Afirmar o consequente é válido?;Não — falácia
+"P e Q" é verdadeiro quando?;Só se ambos verdadeiros
+"P ou Q" é falso quando?;Só se ambos falsos
+Sequência 2,6,12,20,30,??;42
+"Todos A são B" no diagrama?;Círculo A dentro de B
+"Alguns" significa?;Pelo menos um
