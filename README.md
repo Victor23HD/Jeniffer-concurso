@@ -23,5 +23,6 @@ Acesse no navegador (aulas, flashcards, simulados e plano):
 | `site/` | Código do site (CSS/JS) |
 | `concurso-assistente-informatica/estudo/` | Conteúdo das aulas + flashcards |
 | `concurso-assistente-informatica/simulados/` | Provas e gabaritos |
+| [`PROGRESSO.md`](concurso-assistente-informatica/PROGRESSO.md) | Anotar notas dos simulados (para revisão em ~2 semanas) |
 
-> Se o link do site não abrir ainda, ative em: GitHub → Settings → Pages → Source: **Deploy from a branch** → Branch: **main** → folder: **/ (root)**.
+> Se o link do site não abrir ainda, ative em: GitHub → Settings → Pages → Source: **GitHub Actions** (ou branch `main` / root).
