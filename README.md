@@ -3,13 +3,25 @@
 Material de estudo para o **Concurso Público 01/2026** — Prefeitura de Vargem Grande Paulista  
 Cargo: **Assistente de Informática** · Prova: **30/08/2026**
 
-## Conteúdo
+## Site de estudos
 
-Tudo está em [`concurso-assistente-informatica/`](concurso-assistente-informatica/):
+Acesse no navegador (aulas, flashcards, simulados e plano):
+
+**https://victor23hd.github.io/Jeniffer-concurso/**
+
+## O que tem no site
+
+- **Estudar** — Português, Matemática/Lógica e Informática (aulas completas)
+- **Flashcards** — revisão rápida
+- **Simulados** — 8 provas no formato do concurso, com correção automática
+- **Plano** — cronograma até 30/08
+
+## Arquivos no repositório
 
 | Pasta | Uso |
 |---|---|
-| `estudo/` | Conteúdo diário (Português, Matemática/Lógica, Informática) + flashcards |
-| `simulados/` | 8 provas no formato do concurso + gabaritos + cronograma |
+| `site/` | Código do site (CSS/JS) |
+| `concurso-assistente-informatica/estudo/` | Conteúdo das aulas + flashcards |
+| `concurso-assistente-informatica/simulados/` | Provas e gabaritos |
 
-Comece pelo [`README do material`](concurso-assistente-informatica/README.md).
+> Se o link do site não abrir ainda, ative em: GitHub → Settings → Pages → Source: **Deploy from a branch** → Branch: **main** → folder: **/ (root)**.
