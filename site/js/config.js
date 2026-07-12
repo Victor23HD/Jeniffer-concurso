@@ -69,14 +69,25 @@
 
     simulados: {
       lista: [
-        { id: '01', arquivo: p('simulados/simulado-01.md'), gabarito: p('simulados/gabaritos/simulado-01-gabarito.md') },
-        { id: '02', arquivo: p('simulados/simulado-02.md'), gabarito: p('simulados/gabaritos/simulado-02-gabarito.md') },
-        { id: '03', arquivo: p('simulados/simulado-03.md'), gabarito: p('simulados/gabaritos/simulado-03-gabarito.md') },
-        { id: '04', arquivo: p('simulados/simulado-04.md'), gabarito: p('simulados/gabaritos/simulado-04-gabarito.md') },
-        { id: '05', arquivo: p('simulados/simulado-05.md'), gabarito: p('simulados/gabaritos/simulado-05-gabarito.md') },
-        { id: '06', arquivo: p('simulados/simulado-06.md'), gabarito: p('simulados/gabaritos/simulado-06-gabarito.md') },
-        { id: '07', arquivo: p('simulados/simulado-07.md'), gabarito: p('simulados/gabaritos/simulado-07-gabarito.md') },
-        { id: '08', arquivo: p('simulados/simulado-08.md'), gabarito: p('simulados/gabaritos/simulado-08-gabarito.md') }
+        { id: '01', arquivo: p('simulados/simulado-01.md'), gabarito: p('simulados/gabaritos/simulado-01-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '02', arquivo: p('simulados/simulado-02.md'), gabarito: p('simulados/gabaritos/simulado-02-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '03', arquivo: p('simulados/simulado-03.md'), gabarito: p('simulados/gabaritos/simulado-03-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '04', arquivo: p('simulados/simulado-04.md'), gabarito: p('simulados/gabaritos/simulado-04-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '05', arquivo: p('simulados/simulado-05.md'), gabarito: p('simulados/gabaritos/simulado-05-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '06', arquivo: p('simulados/simulado-06.md'), gabarito: p('simulados/gabaritos/simulado-06-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '07', arquivo: p('simulados/simulado-07.md'), gabarito: p('simulados/gabaritos/simulado-07-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' },
+        { id: '08', arquivo: p('simulados/simulado-08.md'), gabarito: p('simulados/gabaritos/simulado-08-gabarito.md'), tipo: 'completo', questoes: 40, tempo: '3h' }
+      ],
+      tematicos: [
+        { id: 'pt-01', materia: 'portugues', titulo: 'Português 01', foco: 'Interpretação, ortografia e pontuação', arquivo: p('simulados/tematicos/portugues-01.md'), gabarito: p('simulados/tematicos/gabaritos/portugues-01-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'pt-02', materia: 'portugues', titulo: 'Português 02', foco: 'Classes e concordância', arquivo: p('simulados/tematicos/portugues-02.md'), gabarito: p('simulados/tematicos/gabaritos/portugues-02-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'pt-03', materia: 'portugues', titulo: 'Português 03', foco: 'Regência, crase e colocação', arquivo: p('simulados/tematicos/portugues-03.md'), gabarito: p('simulados/tematicos/gabaritos/portugues-03-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'mt-01', materia: 'matematica', titulo: 'Matemática 01', foco: 'MMC, MDC, % e razão', arquivo: p('simulados/tematicos/matematica-01.md'), gabarito: p('simulados/tematicos/gabaritos/matematica-01-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'mt-02', materia: 'matematica', titulo: 'Matemática 02', foco: 'Regra de três, juros e médias', arquivo: p('simulados/tematicos/matematica-02.md'), gabarito: p('simulados/tematicos/gabaritos/matematica-02-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'mt-03', materia: 'matematica', titulo: 'Matemática 03', foco: 'Geometria, sequências e lógica', arquivo: p('simulados/tematicos/matematica-03.md'), gabarito: p('simulados/tematicos/gabaritos/matematica-03-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'if-01', materia: 'informatica', titulo: 'Informática 01', foco: 'Hardware, SO, drivers e backup', arquivo: p('simulados/tematicos/informatica-01.md'), gabarito: p('simulados/tematicos/gabaritos/informatica-01-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'if-02', materia: 'informatica', titulo: 'Informática 02', foco: 'Redes, DNS, DHCP e e-mail', arquivo: p('simulados/tematicos/informatica-02.md'), gabarito: p('simulados/tematicos/gabaritos/informatica-02-gabarito.md'), questoes: 20, tempo: '1h15' },
+        { id: 'if-03', materia: 'informatica', titulo: 'Informática 03', foco: 'Segurança, Office e suporte', arquivo: p('simulados/tematicos/informatica-03.md'), gabarito: p('simulados/tematicos/gabaritos/informatica-03-gabarito.md'), questoes: 20, tempo: '1h15' }
       ],
       cronograma: p('simulados/CRONOGRAMA.md')
     },

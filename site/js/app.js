@@ -109,7 +109,7 @@
           '<a class="quick-card" href="#/simulados">' +
             '<span class="icon">📝</span>' +
             '<h3>Simulados</h3>' +
-            '<p>8 provas completas no formato do concurso, com correção automática.</p>' +
+            '<p>9 temáticos (20 questões) + 8 completos no formato da prova.</p>' +
           '</a>' +
           '<a class="quick-card" href="#/plano">' +
             '<span class="icon">🗓️</span>' +
@@ -278,6 +278,12 @@
 
   // -------------------------------------------------------------- Simulados
 
+  function findSimulado(simuladoId) {
+    var completo = CONTENT.simulados.lista.filter(function (x) { return x.id === simuladoId; })[0];
+    if (completo) return completo;
+    return (CONTENT.simulados.tematicos || []).filter(function (x) { return x.id === simuladoId; })[0];
+  }
+
   function renderSimulados(simuladoId) {
     setActiveNav('simulados');
     if (simuladoId) {
@@ -285,29 +291,56 @@
       return;
     }
 
-    var cardsHtml = CONTENT.simulados.lista.map(function (s) {
+    var completosHtml = CONTENT.simulados.lista.map(function (s) {
       return '<a class="simulado-card" href="#/simulados/' + s.id + '">' +
         '<span class="num">' + s.id + '</span>' +
         '<span class="meta">40 questões · A–E · 3h</span>' +
         '</a>';
     }).join('');
 
+    var materias = [
+      { key: 'portugues', label: 'Português' },
+      { key: 'matematica', label: 'Matemática e Lógica' },
+      { key: 'informatica', label: 'Informática' }
+    ];
+
+    var tematicosHtml = materias.map(function (m) {
+      var items = (CONTENT.simulados.tematicos || []).filter(function (t) { return t.materia === m.key; });
+      var cards = items.map(function (s) {
+        return '<a class="simulado-card tematico" href="#/simulados/' + s.id + '">' +
+          '<span class="num">' + escapeHtml(s.titulo) + '</span>' +
+          '<span class="meta">' + s.questoes + ' questões · ' + s.tempo + '</span>' +
+          '<span class="foco">' + escapeHtml(s.foco) + '</span>' +
+          '</a>';
+      }).join('');
+      return '<h2 class="subsection-title">' + escapeHtml(m.label) + '</h2>' +
+        '<div class="simulado-grid">' + cards + '</div>';
+    }).join('');
+
     view.innerHTML =
       '<div class="view-inner">' +
         '<h1 class="section-title">Simulados</h1>' +
-        '<p class="muted" style="margin-top:-6px;margin-bottom:18px;">Escolha um simulado completo. As respostas só aparecem depois de clicar em “Finalizar”.</p>' +
-        '<div class="simulado-grid">' + cardsHtml + '</div>' +
+        '<p class="muted" style="margin-top:-6px;margin-bottom:18px;">Use os temáticos para treinar uma matéria por vez. Os completos imitam a prova oficial (40 questões).</p>' +
+
+        '<h2 class="subsection-title">Por matéria · 20 questões</h2>' +
+        '<p class="muted" style="margin-top:-8px;margin-bottom:14px;">Ideal no dia a dia: foco e ritmo (~1h15).</p>' +
+        tematicosHtml +
+
+        '<h2 class="subsection-title" style="margin-top:36px;">Completos · formato da prova</h2>' +
+        '<p class="muted" style="margin-top:-8px;margin-bottom:14px;">1× por semana (super simulado) · 40 questões · 3h.</p>' +
+        '<div class="simulado-grid">' + completosHtml + '</div>' +
       '</div>';
   }
 
   function renderSimuladoQuiz(simuladoId) {
-    var s = CONTENT.simulados.lista.filter(function (x) { return x.id === simuladoId; })[0];
+    var s = findSimulado(simuladoId);
     if (!s) {
       view.innerHTML = '<div class="view-inner">' + errorHtml('Simulado não encontrado.') + '</div>';
       return;
     }
 
-    view.innerHTML = '<div class="view-inner">' + loadingHtml('Carregando simulado ' + simuladoId + '…') + '</div>';
+    var label = s.titulo || ('Simulado ' + simuladoId);
+    view.innerHTML = '<div class="view-inner">' + loadingHtml('Carregando ' + label + '…') + '</div>';
 
     fetchText(s.arquivo)
       .then(function (md) {

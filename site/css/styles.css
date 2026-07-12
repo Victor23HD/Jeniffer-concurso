@@ -1,9 +1,36 @@
 /* ==========================================================================
    Assistente de Informática — estilos
-   Papel bege quente + tinta escura + verde-musgo/teal como acento.
+   Tema escuro por padrão (estudo noturno) + opção clara.
+   Acento: verde-musgo / teal — sem roxo neon.
    ========================================================================== */
 
-:root {
+:root,
+[data-theme="dark"] {
+  --paper: #12151a;
+  --paper-raised: #1a1f27;
+  --ink: #e8eaed;
+  --ink-soft: #b0b6c0;
+  --ink-faint: #7a8290;
+  --line: #2a313c;
+  --line-soft: #222830;
+  --accent: #3d9b88;
+  --accent-dark: #2f7d6e;
+  --accent-soft: #1a2e2a;
+  --accent-contrast: #061210;
+  --wrong: #e07060;
+  --wrong-soft: #3a2220;
+  --right: #3d9b88;
+  --right-soft: #1a2e2a;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 28px rgba(0, 0, 0, 0.35);
+  --font-ui: 'DM Sans', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --content-max: 720px;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
   --paper: #f7f4ef;
   --paper-raised: #fffdfa;
   --ink: #1a1a1a;
@@ -19,12 +46,8 @@
   --wrong-soft: #f5e4df;
   --right: #0f6b5c;
   --right-soft: #e3efe9;
-  --radius: 14px;
-  --radius-sm: 8px;
   --shadow: 0 1px 2px rgba(26, 26, 26, 0.04), 0 6px 20px rgba(26, 26, 26, 0.06);
-  --font-ui: 'DM Sans', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --content-max: 720px;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -120,8 +143,36 @@ button {
   white-space: nowrap;
   transition: background 0.15s, color 0.15s;
 }
-.nav a:hover { background: var(--accent-soft); text-decoration: none; color: var(--accent-dark); }
+.nav a:hover { background: var(--accent-soft); text-decoration: none; color: var(--accent); }
 .nav a.active { background: var(--accent); color: var(--accent-contrast); }
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-soft);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
 
 /* ---------------------------------- View / layout ---------------------------------- */
 
@@ -362,7 +413,7 @@ button {
   padding: 8px 10px;
   text-align: left;
 }
-.content-prose th { background: var(--accent-soft); color: var(--accent-dark); }
+.content-prose th { background: var(--accent-soft); color: var(--accent); }
 
 .content-prose code {
   background: var(--line-soft);
@@ -491,6 +542,7 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 14px;
+  margin-bottom: 8px;
 }
 
 .simulado-card {
@@ -503,10 +555,21 @@ button {
   padding: 18px;
   box-shadow: var(--shadow);
   text-align: left;
+  color: var(--ink);
+  transition: border-color 0.15s, transform 0.1s;
 }
-.simulado-card:hover { border-color: var(--accent); text-decoration: none; }
-.simulado-card .num { font-family: var(--font-serif); font-size: 1.6rem; color: var(--accent-dark); font-weight: 600; }
+.simulado-card:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-1px); }
+.simulado-card .num { font-family: var(--font-serif); font-size: 1.25rem; color: var(--accent); font-weight: 600; line-height: 1.25; }
 .simulado-card .meta { font-size: 0.82rem; color: var(--ink-faint); }
+.simulado-card .foco { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.35; }
+.simulado-card.tematico { min-height: 112px; }
+
+.subsection-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 22px 0 12px;
+  color: var(--ink);
+}
 
 .quiz-header {
   margin-bottom: 20px;

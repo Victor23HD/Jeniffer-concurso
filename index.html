@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Estudos — Assistente de Informática</title>
 <meta name="description" content="Site de estudos para o concurso de Assistente de Informática — Prefeitura de Vargem Grande Paulista.">
+<meta name="color-scheme" content="dark light">
+
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('jeniffer-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,13 +36,16 @@
       </span>
     </a>
 
-    <nav class="nav" id="mainNav" aria-label="Navegação principal">
-      <a href="#/" data-route="home">Início</a>
-      <a href="#/estudar" data-route="estudar">Estudar</a>
-      <a href="#/flashcards" data-route="flashcards">Flashcards</a>
-      <a href="#/simulados" data-route="simulados">Simulados</a>
-      <a href="#/plano" data-route="plano">Plano</a>
-    </nav>
+    <div class="topbar-right">
+      <nav class="nav" id="mainNav" aria-label="Navegação principal">
+        <a href="#/" data-route="home">Início</a>
+        <a href="#/estudar" data-route="estudar">Estudar</a>
+        <a href="#/flashcards" data-route="flashcards">Flashcards</a>
+        <a href="#/simulados" data-route="simulados">Simulados</a>
+        <a href="#/plano" data-route="plano">Plano</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="themeToggle" title="Alternar tema" aria-label="Alternar tema claro ou escuro">☾</button>
+    </div>
   </header>
 
   <main id="view" class="view" tabindex="-1"></main>
@@ -46,6 +59,7 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 
+<script src="site/js/theme.js"></script>
 <script src="site/js/config.js"></script>
 <script src="site/js/content-data.js"></script>
 <script src="site/js/quiz.js"></script>
