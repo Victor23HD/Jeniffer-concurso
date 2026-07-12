@@ -23,6 +23,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Rebuild content bundle
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path('concurso-assistente-informatica')
+          data = {}
+          for path in sorted(root.rglob('*.md')):
+              data[path.relative_to(root).as_posix()] = path.read_text(encoding='utf-8')
+          Path('site/js/content-data.js').write_text(
+              'window.CONTENT_DATA = ' + json.dumps(data, ensure_ascii=False) + ';\n',
+              encoding='utf-8'
+          )
+          print('bundled', len(data), 'markdown files')
+          PY
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
@@ -30,6 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+          include-hidden-files: true
 
       - name: Deploy
         id: deployment

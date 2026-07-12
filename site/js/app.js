@@ -20,7 +20,19 @@
       .replace(/'/g, '&#39;');
   }
 
+  function contentRelPath(url) {
+    var marker = '/concurso-assistente-informatica/';
+    var i = String(url).indexOf(marker);
+    if (i !== -1) return String(url).slice(i + marker.length);
+    // relative fallback: concurso-assistente-informatica/...
+    return String(url).replace(/^\/?concurso-assistente-informatica\//, '');
+  }
+
   function fetchText(url) {
+    var rel = contentRelPath(url);
+    if (window.CONTENT_DATA && Object.prototype.hasOwnProperty.call(window.CONTENT_DATA, rel)) {
+      return Promise.resolve(window.CONTENT_DATA[rel]);
+    }
     return fetch(url).then(function (res) {
       if (!res.ok) throw new Error('Não foi possível carregar ' + url + ' (HTTP ' + res.status + ')');
       return res.text();
