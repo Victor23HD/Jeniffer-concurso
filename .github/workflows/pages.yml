@@ -1,8 +1,12 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages (Actions)
+
+# Só roda manualmente. O deploy automático usa a branch gh-pages
+# (workflow "Deploy site (gh-pages branch)").
+#
+# Se quiser este modo: Settings → Pages → Source = GitHub Actions,
+# depois Actions → este workflow → Run workflow.
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -23,31 +27,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Rebuild content bundle
+      - name: Bundle markdown into JS
+        run: python3 scripts/bundle_content.py
+
+      - name: Build static site folder
         run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          root = Path('concurso-assistente-informatica')
-          data = {}
-          for path in sorted(root.rglob('*.md')):
-              data[path.relative_to(root).as_posix()] = path.read_text(encoding='utf-8')
-          Path('site/js/content-data.js').write_text(
-              'window.CONTENT_DATA = ' + json.dumps(data, ensure_ascii=False) + ';\n',
-              encoding='utf-8'
-          )
-          print('bundled', len(data), 'markdown files')
-          PY
+          rm -rf _site
+          mkdir -p _site
+          cp index.html _site/
+          touch _site/.nojekyll
+          cp -r site _site/site
+          cp -r concurso-assistente-informatica _site/concurso-assistente-informatica
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v5
 
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
-          include-hidden-files: true
+          path: _site
 
-      - name: Deploy
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
